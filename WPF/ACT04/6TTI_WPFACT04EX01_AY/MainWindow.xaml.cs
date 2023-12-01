@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace _6TTI_WPFACT04_AY
+namespace _6TTI_WPFACT04EX01_AY
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

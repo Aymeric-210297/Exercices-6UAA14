@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace _6TTI_WPFACT04_AY
+namespace _6TTI_WPFACT04EX01_AY
 {
     /// <summary>
     /// Interaction logic for App.xaml
