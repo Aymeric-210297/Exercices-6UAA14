@@ -25,7 +25,9 @@ namespace _6TTI_WPFACT06EX01_AY
         {
             InitializeComponent();
 
-            for (int i = 0; i < 10; i++)
+            int tailleDamier = 10;
+
+            for (int i = 0; i < tailleDamier; i++)
             {
                 ColumnDefinition colDef = new ColumnDefinition();
                 grdMain.ColumnDefinitions.Add(colDef);
@@ -38,20 +40,20 @@ namespace _6TTI_WPFACT06EX01_AY
                 for (int j = 0; j < grdMain.RowDefinitions.Count; j++)
                 {
                     Button button = new Button();
-                    button.Height = window.Height / 10;
-                    button.Width = window.Width / 10;
+                    button.Height = window.Height / tailleDamier;
+                    button.Width = window.Width / tailleDamier;
                     button.VerticalAlignment = VerticalAlignment.Center;
                     button.HorizontalAlignment = HorizontalAlignment.Center;
 
-                    if ((i % 2 != 0 && j % 2 == 0) || (j % 2 != 0 && i % 2 == 0))
-                    {
-                        button.Background = Brushes.Black;
-                    } else
+                    if ((i + j) % 2 == 0)
                     {
                         button.Background = Brushes.White;
+                    } else
+                    {
+                        button.Background = Brushes.Black;
                     }
 
-                    button.Content = (i + 1) + (j * 10);
+                    button.Content = (i + 1) + (j * tailleDamier);
                     button.Foreground = Brushes.Red;
                     button.FontWeight = FontWeights.Bold;
                     button.FontSize = 26;
