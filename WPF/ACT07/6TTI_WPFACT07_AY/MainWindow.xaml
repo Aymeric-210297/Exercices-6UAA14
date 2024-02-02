@@ -11,7 +11,9 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Image Margin="10,10,10,10" Source="/assets/racetrack.png" />
+        <Canvas x:Name="canvasPiste">
+            <Image Margin="10,10,10,10" Source="/assets/racetrack.png" />
+        </Canvas>
         <GroupBox Margin="10,10,10,10" Grid.Row="1" Header="Salle des paris" FontSize="24">
             <Grid>
                 <Grid.RowDefinitions>
@@ -24,27 +26,27 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel>
                     <TextBlock Text="Pari minimum : 5 écus" FontWeight="Bold" FontSize="24" Margin="10,10,0,0" />
-                    <RadioButton Margin="10,20,0,0" GroupName="paris" Name="Joe" Content="Joe possède X écus" FontSize="20" />
-                    <RadioButton Margin="10,10,0,0" GroupName="paris" Name="Bob" Content="Bob possède X écus" FontSize="20" />
-                    <RadioButton Margin="10,10,0,0" GroupName="paris" Name="Bill" Content="Bill possède X écus" FontSize="20" />
+                    <RadioButton IsChecked="True" x:Name="radioButtonParieur1" Margin="10,20,0,0" GroupName="parieurActuel" Content="Parieur1 possède X écus" FontSize="20" />
+                    <RadioButton x:Name="radioButtonParieur2" Margin="10,10,0,0" GroupName="parieurActuel" Content="Parieur2 possède X écus" FontSize="20" />
+                    <RadioButton x:Name="radioButtonParieur3" Margin="10,10,0,0" GroupName="parieurActuel" Content="Parieur3 possède X écus" FontSize="20" />
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <TextBlock Text="Paris placés" FontWeight="Bold" FontSize="24" Margin="10,10,0,0" />
-                    <TextBlock Text="Joe n'a pas encore parié" FontSize="20" Margin="10,20,0,0" />
-                    <TextBlock Text="Bob n'a pas encore parié" FontSize="20" Margin="10,10,0,0" />
-                    <TextBlock Text="Bill n'a pas encore parié" FontSize="20" Margin="10,10,0,0" />
+                    <TextBlock x:Name="textBlockParieur1" Text="Parieur1 n'a pas encore parié" FontSize="20" Margin="10,20,0,0" />
+                    <TextBlock x:Name="textBlockParieur2" Text="Parieur2 n'a pas encore parié" FontSize="20" Margin="10,10,0,0" />
+                    <TextBlock x:Name="textBlockParieur3" Text="Parieur3 n'a pas encore parié" FontSize="20" Margin="10,10,0,0" />
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                     <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                        <TextBlock FontSize="20" Text="Bob" />
+                        <TextBlock x:Name="textBlockParieurActuel" FontSize="20" Text="ParieurX" />
                         <TextBlock FontSize="20" Text=" parie " />
-                        <TextBox MinWidth="30" TextAlignment="Center" Text="0" FontSize="20" FontWeight="Bold" BorderBrush="Black" />
+                        <TextBox x:Name="textBoxEcusPari" MinWidth="30" TextAlignment="Center" Text="0" FontSize="20" FontWeight="Bold" BorderBrush="Black" />
                         <TextBlock FontSize="20" Text=" écus sur le chien numéro " />
-                        <TextBox MinWidth="30" TextAlignment="Center" Text="" FontSize="20" FontWeight="Bold" BorderBrush="Black" />
-                        <Button Content="Mettre le pari" Padding="5,0,5,0" FontSize="20" Margin="20,0,0,0" />
-                        <Button Content="Lancer la course !" Padding="5,0,5,0" FontSize="20" Margin="10,0,0,0" />
+                        <TextBox x:Name="textBoxNumeroChienPari" MinWidth="30" TextAlignment="Center" Text="" FontSize="20" FontWeight="Bold" BorderBrush="Black" />
+                        <Button x:Name="buttonMettrePari" Content="Mettre le pari" Padding="5,0,5,0" FontSize="20" Margin="20,0,0,0" />
+                        <Button x:Name="buttonLancer" Content="Lancer la course !" Padding="5,0,5,0" FontSize="20" Margin="10,0,0,0" />
                     </StackPanel>
-                    <Button Margin="10,10,10,10" Content="Remettre à zéro" FontSize="20" />
+                    <Button x:Name="buttonReset" Margin="10,10,10,10" Content="Remettre à zéro" FontSize="20" />
                 </StackPanel>
             </Grid>
         </GroupBox>
