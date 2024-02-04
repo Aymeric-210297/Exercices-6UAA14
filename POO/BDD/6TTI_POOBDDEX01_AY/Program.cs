@@ -8,9 +8,24 @@ class Program
 {
     static void Main(string[] args)
     {
+        MesMethodes mesMethodes = new MesMethodes();
+
         var configuration = new ConfigurationBuilder()
             .AddUserSecrets<Program>()
             .Build();
+
+        if (
+            configuration["MYSQL_HOST"] == null ||
+            configuration["MYSQL_DATABASE"] == null ||
+            configuration["MYSQL_PORT"] == null ||
+            configuration["MYSQL_USERNAME"] == null ||
+            configuration["MYSQL_PASSWORD"] == null
+        )
+        {
+            mesMethodes.WriteTitle("Gestionnaire de biens");
+            mesMethodes.WriteError("[-] Il semble que vous n'ayez pas configuré le programme correctement, veuillez vous référer au fichier README.md pour plus d'informations.");
+            return;
+        }
 
         string connectionString =
             "server=" + configuration["MYSQL_HOST"] +
@@ -21,8 +36,6 @@ class Program
 
         MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
         BienModel bienModel = new BienModel(mySqlConnection);
-
-        MesMethodes mesMethodes = new MesMethodes();
 
         bool recom = true;
         while (recom)
@@ -43,7 +56,7 @@ class Program
                     Console.WriteLine("\n\nRécupération des biens...");
                     if (!bienModel.RefreshBiens())
                     {
-                        mesMethodes.WriteSuccess("\n[-] Une erreur est survenue, impossible de récupérer les biens.");
+                        mesMethodes.WriteError("\n[-] Une erreur est survenue, impossible de récupérer les biens.");
                     }
                     else
                     {
