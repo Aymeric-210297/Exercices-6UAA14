@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows;
 
 namespace _6TTI_WPFACT07_AY
@@ -62,17 +63,21 @@ namespace _6TTI_WPFACT07_AY
 
         private void RefreshInterface()
         {
-            _radioButton.Content = _nom + " possède " + _portefeuille + " écus";
-            if (_portefeuille < 5)
-            {
-                _radioButton.IsEnabled = false;
-            }
+            _radioButton.Content = $"{_nom} possède {_portefeuille} écus";
 
             if (_pariActuel != null)
             {
-                _textBlock.Text = _nom + " a parié " + _pariActuel.Ecus + " écus sur le chien numéro " + _pariActuel.Chien.Numero;
-            } else
+                _textBlock.Foreground = Brushes.Black;
+                _textBlock.Text = $"{_nom} a parié {_pariActuel.Ecus} écus sur le chien numéro {_pariActuel.Chien.Numero}";
+            }
+            else if (_portefeuille < 5)
             {
+                _textBlock.Foreground = Brushes.Red;
+                _textBlock.Text = _nom + " n'est pas en mesure de parier";
+            }
+            else
+            {
+                _textBlock.Foreground = Brushes.Black;
                 _textBlock.Text = _nom + " n'a pas encore parié";
             }
 
@@ -96,11 +101,28 @@ namespace _6TTI_WPFACT07_AY
                 RefreshInterface();
                 return true;
             }
+            MessageBox.Show($"{_nom} n'a pas assez d'écus pour en retirer {ecus} !");
             return false;
+        }
+
+        public void ResetPari()
+        {
+            _pariActuel = null;
+            RefreshInterface();
         }
 
         public bool Parier(int ecus, Chien chien)
         {
+            if (_pariActuel != null)
+            {
+                MessageBox.Show(_nom + " a déjà parié pour cette course, il n'est pas possible de modifier son pari !");
+                return false;
+            }
+            if (ecus < 5)
+            {
+                MessageBox.Show("Il est impossible de parier moins de 5 écus !");
+                return false;
+            }
             if (!RetirerPortefeuille(ecus))
             {
                 return false;

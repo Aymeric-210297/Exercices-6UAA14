@@ -12,9 +12,10 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Canvas x:Name="canvasPiste">
-            <Image Margin="10,10,10,10" Source="/assets/racetrack.png" />
+            <Image Source="/assets/racetrack.png" Canvas.Left="32" Canvas.Top="40" HorizontalAlignment="Left" VerticalAlignment="Top" Width="786" />
+            <Rectangle Visibility="Hidden" x:Name="rectangleHitbox" Height="262" Canvas.Left="740" Stroke="Black" Canvas.Top="40" Width="78"/>
         </Canvas>
-        <GroupBox Margin="10,10,10,10" Grid.Row="1" Header="Salle des paris" FontSize="24">
+        <GroupBox x:Name="groupBoxSallePari" Margin="10,10,10,10" Grid.Row="1" Header="Salle des paris" FontSize="24">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*" />
@@ -40,11 +41,11 @@
                     <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                         <TextBlock x:Name="textBlockParieurActuel" FontSize="20" Text="ParieurX" />
                         <TextBlock FontSize="20" Text=" parie " />
-                        <TextBox x:Name="textBoxEcusPari" MinWidth="30" TextAlignment="Center" Text="0" FontSize="20" FontWeight="Bold" BorderBrush="Black" />
+                        <TextBox x:Name="textBoxEcusPari" MinWidth="30" TextAlignment="Center" Text="5" FontSize="20" FontWeight="Bold" BorderBrush="Black" />
                         <TextBlock FontSize="20" Text=" écus sur le chien numéro " />
                         <TextBox x:Name="textBoxNumeroChienPari" MinWidth="30" TextAlignment="Center" Text="" FontSize="20" FontWeight="Bold" BorderBrush="Black" />
                         <Button x:Name="buttonMettrePari" Content="Mettre le pari" Padding="5,0,5,0" FontSize="20" Margin="20,0,0,0" />
-                        <Button x:Name="buttonLancer" Content="Lancer la course !" Padding="5,0,5,0" FontSize="20" Margin="10,0,0,0" />
+                        <Button x:Name="buttonLancerCourse" Content="Lancer la course !" Padding="5,0,5,0" FontSize="20" Margin="10,0,0,0" />
                     </StackPanel>
                     <Button x:Name="buttonReset" Margin="10,10,10,10" Content="Remettre à zéro" FontSize="20" />
                 </StackPanel>
